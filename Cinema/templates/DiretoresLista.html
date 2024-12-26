@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Diretores - Cinema Luz, Câmera e Reflexão</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/DiretoresLista.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href='/'> <h1>Cinema Luz, Câmera e Reflexão</h1> </a>
+        </div>
+    </header>
+
+    <section class="lista-diretores"> //o
+        <h2>Lista de Diretores</h2>
+        <table class="tabela-diretores">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Nacionalidade</th>
+                    <th>Filmes Dirigidos</th>
+                    <th>Data de Nascimento</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for diretor in diretores %}
+                <tr>
+                    <td>{{ diretor.Nome }}</td>
+                    <td>{{ diretor.Nacionalidade }}</td>
+                    <td>{{ diretor.Filmes_dirigidos }}</td>
+                    <td>{{ diretor.Data_nascimento }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_diretor', id=diretor.Id) }}" class="btn-editar">Editar</a>
+                        <a href="{{ url_for('deletar_diretor', id=diretor.Id) }}" class="btn-deletar">Deletar</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">Não há diretores cadastrados.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Cinema Luz, Câmera e Reflexão - Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
